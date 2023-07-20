@@ -76,15 +76,12 @@ export const App = () => {
           onChange={handleChange}
         />
         <h2>Contacts</h2>
-        {state.contacts.length > 1 && <Filter onChange={handleChange} />}
-        {state.contacts.length > 0 ? (
+          <Filter onChange={handleChange} />
           <ContactList
             contacts={state.contacts}
             filter={state.filter}
             onRemoveContact={handleRemoveContact}
           />
-        ) : (<p>Your phonebook is empty.</p>)
-        }
       </div>
     );
   }
