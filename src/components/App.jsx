@@ -23,7 +23,7 @@ export const App = () => {
         contacts: [...contactsSave]
       }))
     }
-  })
+  }, [])
 
 
   const handleChange = e => {
@@ -71,17 +71,18 @@ export const App = () => {
     return (
       <div>
         <h1>Phonebook</h1>
-        <ContactForm
-          onSubmit={handleSubmit}
-          onChange={handleChange}
-        />
+        <ContactForm onSubmit={handleSubmit} onChange={handleChange} />
         <h2>Contacts</h2>
-          <Filter onChange={handleChange} />
+        {state.contacts.length > 1 && <Filter onChange={handleChange} />}
+        {state.contacts.length > 0 ? (
           <ContactList
             contacts={state.contacts}
             filter={state.filter}
             onRemoveContact={handleRemoveContact}
           />
+        ) : (
+          <p>Your phonebook is empty.</p>
+        )}
       </div>
     );
   }
